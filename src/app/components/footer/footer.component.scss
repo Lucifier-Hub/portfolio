@@ -1,8 +1,8 @@
 @import '../../../styles/variables';
 
 .footer {
-  background-color: $bg-dark;
-  color: $text-light;
+  background-color: var(--bg-light);
+  color: var(--text-primary);
   padding: 4rem 0 2rem;
 
   @media (max-width: 575.98px) {
@@ -17,7 +17,7 @@
     }
 
     p {
-      color: $text-muted;
+      color: var(--text-secondary);
       font-size: 0.9rem;
       max-width: 300px;
 
@@ -29,7 +29,7 @@
   }
 
   h5 {
-    color: $text-light;
+    color: var(--text-primary);
     font-weight: 600;
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
@@ -48,13 +48,13 @@
       }
 
       a {
-        color: $text-muted;
+        color: var(--text-secondary);
         text-decoration: none;
         transition: color 0.3s ease;
         font-size: 0.9rem;
 
         &:hover {
-          color: $text-light;
+          color: var(--text-primary);
         }
       }
     }
@@ -66,12 +66,12 @@
     }
 
     a {
-      color: $text-muted;
+      color: var(--text-secondary);
       font-size: 1.25rem;
       transition: color 0.3s ease;
 
       &:hover {
-        color: $text-light;
+        color: var(--text-primary);
       }
 
       @media (max-width: 575.98px) {
@@ -81,7 +81,7 @@
   }
 
   .footer-bottom {
-    border-top: 1px solid rgba($text-light, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding-top: 2rem;
     margin-top: 3rem;
 
@@ -91,7 +91,7 @@
     }
 
     p {
-      color: rgba($text-light, 0.6);
+      color: var(--text-secondary);
       font-size: 0.875rem;
 
       @media (max-width: 575.98px) {

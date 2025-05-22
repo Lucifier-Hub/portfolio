@@ -1,11 +1,13 @@
 @import '../../../styles/variables';
 
 .contact {
-  background-color: var(--bg-light);
+  background-color: var(--bg-dark);
+  color: var(--text-light);
 
   h2 {
     position: relative;
     display: inline-block;
+    color: var(--text-light);
     
     &::after {
       content: '';
@@ -31,6 +33,7 @@
   }
 
   .lead {
+    color: var(--text-muted);
     @media (max-width: 575.98px) {
       font-size: 1rem;
       padding: 0 1rem;
@@ -40,13 +43,16 @@
   .contact-info {
     height: 100%;
     padding: 2rem;
-    background: var(--bg-primary);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     box-shadow: var(--shadow-sm);
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 
     @media (max-width: 991.98px) {
       margin-bottom: 2rem;
@@ -61,7 +67,7 @@
       transition: all 0.3s ease;
 
       &:hover {
-        background: rgba(0, 0, 0, 0.02);
+        background: rgba(255, 255, 255, 0.05);
         transform: translateX(5px);
       }
 
@@ -73,19 +79,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--bg-light);
+        background: rgba(255, 255, 255, 0.1);
         border-radius: 50%;
       }
 
       h5 {
         margin: 0;
         font-weight: 600;
-        color: var(--text-primary);
+        color: var(--text-light);
       }
 
       p {
         margin: 0;
-        color: var(--text-secondary);
+        color: var(--text-muted);
       }
     }
   }
@@ -93,26 +99,29 @@
   .contact-form {
     height: 100%;
     padding: 2rem;
-    background: var(--bg-primary);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 
     .form-control {
       padding: 0.75rem 1rem;
-      border: 2px solid var(--bg-light);
+      border: 2px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
       transition: all 0.3s ease;
-      background: var(--bg-light);
-      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-light);
 
       &:focus {
         border-color: var(--primary);
         box-shadow: none;
-        background: var(--bg-primary);
+        background: rgba(255, 255, 255, 0.1);
       }
 
       &::placeholder {
-        color: var(--text-secondary);
+        color: var(--text-muted);
       }
     }
 
