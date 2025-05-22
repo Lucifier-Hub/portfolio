@@ -146,52 +146,62 @@
   .hero-image {
     position: relative;
     padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     @media (max-width: 991.98px) {
-      margin-top: 3rem;
+      margin-top: 2rem;
       padding: 0;
     }
 
     img {
-      border-radius: 20px;
-      box-shadow: var(--shadow-lg);
       width: 100%;
-      height: auto;
-      transition: transform $transition-base $ease-out-expo;
-
-      @media (hover: hover) {
-        &:hover {
-          transform: scale(1.02);
-        }
+      max-width: 400px;
+      border-radius: 50%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      border: 8px solid rgba(255, 255, 255, 0.1);
+      
+      @media (max-width: 991.98px) {
+        max-width: 320px;
+        margin: 0 auto;
+      }
+      
+      @media (max-width: 575.98px) {
+        max-width: 280px;
       }
     }
 
     .experience-badge {
       position: absolute;
-      bottom: 0;
-      right: 0;
+      bottom: 2rem;
+      right: 2rem;
       background: var(--bg-primary);
       color: var(--text-primary);
       padding: 1.5rem;
       border-radius: 12px;
       text-align: center;
       box-shadow: var(--shadow-lg);
-      transform: translateY(50%);
       transition: all $transition-base $ease-out-expo;
 
       @media (hover: hover) {
         &:hover {
-          transform: translateY(50%) scale(1.05);
+          transform: scale(1.05);
         }
       }
 
       @media (max-width: 991.98px) {
+        bottom: 0;
+        right: 50%;
+        transform: translateX(50%);
         padding: 1rem;
-        transform: translateY(25%);
       }
 
       @media (max-width: 575.98px) {
         position: relative;
+        right: auto;
         transform: translateY(-50%);
         margin: 0 auto;
         max-width: 200px;
