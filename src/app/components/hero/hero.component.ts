@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, OnDestroy, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as THREE from 'three';
 
@@ -15,6 +15,7 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   private techObjects: THREE.Mesh[] = [];
   private symbolsGroup!: THREE.Group;
   private animationFrameId: number | null = null;
+  private isScrolling: boolean = false;
 
   // Tech symbols with their colors
   private readonly TECH_SYMBOLS = [
@@ -26,6 +27,53 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   ];
 
   constructor(private elementRef: ElementRef) {}
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    // Hide scroll indicator when user starts scrolling
+    if (window.scrollY > 100 && !this.isScrolling) {
+      const indicator = this.elementRef.nativeElement.querySelector('.scroll-indicator');
+      if (indicator) {
+        indicator.style.opacity = '0';
+        setTimeout(() => {
+          indicator.style.display = 'none';
+        }, 300);
+      }
+    }
+  }
+
+  scrollToNextSection() {
+    this.isScrolling = true;
+    const windowHeight = window.innerHeight;
+    const targetScrollPosition = windowHeight;
+
+    // Smooth scroll animation
+    const startPosition = window.scrollY;
+    const distance = targetScrollPosition - startPosition;
+    const duration = 1000; // ms
+    let start: number | null = null;
+
+    const step = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const progress = timestamp - start;
+      const percentage = Math.min(progress / duration, 1);
+
+      // Easing function for smooth animation
+      const easing = (t: number) => t < 0.5 
+        ? 4 * t * t * t 
+        : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+
+      window.scrollTo(0, startPosition + distance * easing(percentage));
+
+      if (progress < duration) {
+        requestAnimationFrame(step);
+      } else {
+        this.isScrolling = false;
+      }
+    };
+
+    requestAnimationFrame(step);
+  }
 
   ngOnInit(): void {}
 
