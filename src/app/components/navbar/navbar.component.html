@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg fixed-top" [ngClass]="{'navbar-scrolled': isScrolled}">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <path d="M20 0L40 20L20 40L0 20L20 0Z" [attr.fill]="isScrolled ? '#222222' : '#FFFFFF'"/>
+      </svg>
+    </a>
+    
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" [attr.aria-expanded]="!isCollapsed">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" [ngClass]="{'show': !isCollapsed}">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#about">About Me</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#portfolio">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#services">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#blog">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-primary" href="#contact">Book A Call</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

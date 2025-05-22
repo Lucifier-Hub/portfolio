@@ -1,0 +1,127 @@
+.navbar {
+  padding: 20px 0;
+  transition: all 0.3s ease;
+  background-color: transparent;
+
+  &.navbar-scrolled {
+    padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+
+    .nav-link {
+      color: #222222;
+
+      &:hover {
+        color: #7B7B7B;
+      }
+    }
+  }
+
+  .navbar-brand {
+    svg {
+      transition: all 0.3s ease;
+    }
+  }
+
+  .nav-link {
+    color: #FFFFFF;
+    font-weight: 500;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 16px;
+      right: 16px;
+      height: 2px;
+      background-color: currentColor;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+
+  .navbar-toggler {
+    border: none;
+    padding: 0;
+    width: 30px;
+    height: 20px;
+    position: relative;
+    
+    &:focus {
+      box-shadow: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: none;
+      background-color: currentColor;
+      height: 2px;
+      width: 100%;
+      position: absolute;
+      transition: all 0.3s ease;
+      left: 0;
+
+      &::before,
+      &::after {
+        content: '';
+        background-color: currentColor;
+        height: 2px;
+        width: 100%;
+        position: absolute;
+        transition: all 0.3s ease;
+        left: 0;
+      }
+
+      &::before {
+        top: -6px;
+      }
+
+      &::after {
+        bottom: -6px;
+      }
+    }
+  }
+
+  .btn-primary {
+    margin-left: 16px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .navbar {
+    background-color: #FFFFFF;
+    padding: 10px 0;
+
+    .nav-link {
+      color: #222222;
+      padding: 12px 16px;
+
+      &:hover {
+        color: #7B7B7B;
+      }
+    }
+
+    .navbar-collapse {
+      background-color: #FFFFFF;
+      padding: 20px;
+      margin: 10px -12px 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+      margin: 16px;
+      display: inline-block;
+    }
+  }
+}
