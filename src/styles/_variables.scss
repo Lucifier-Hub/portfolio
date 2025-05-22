@@ -10,13 +10,90 @@ $text-secondary: $secondary;
 $text-light: $white;
 $text-muted: rgba($white, 0.8);
 
-$bg-dark: $primary;
+$bg-primary: $white;
 $bg-light: $tertiary;
-$bg-white: $white;
+$bg-dark: $primary;
+
+// Animation variables
+$transition-fast: 0.2s;
+$transition-base: 0.3s;
+$transition-slow: 0.5s;
+$ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+$ease-bounce: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+// Shadows
+$shadow-sm: 0 2px 8px rgba($primary, 0.1);
+$shadow-md: 0 4px 16px rgba($primary, 0.1);
+$shadow-lg: 0 8px 30px rgba($primary, 0.15);
+$shadow-xl: 0 12px 40px rgba($primary, 0.2);
+
+// Mixins
+@mixin hover-lift {
+  transition: transform $transition-base $ease-out-expo,
+              box-shadow $transition-base $ease-out-expo;
+  
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: $shadow-xl;
+    }
+  }
+}
+
+@mixin hover-grow {
+  transition: transform $transition-base $ease-out-expo;
+  
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+@mixin hover-glow($color: $primary) {
+  transition: box-shadow $transition-base $ease-out-expo;
+  
+  @media (hover: hover) {
+    &:hover {
+      box-shadow: 0 0 20px rgba($color, 0.3);
+    }
+  }
+}
+
+// Container
+$container-max-width: 1200px;
+$container-padding: 1rem;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+:root {
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+  --tertiary: #{$tertiary};
+  --white: #{$white};
+  
+  --text-primary: #{$text-primary};
+  --text-secondary: #{$text-secondary};
+  --text-light: #{$text-light};
+  --text-muted: #{$text-muted};
+  
+  --bg-primary: #{$bg-primary};
+  --bg-light: #{$bg-light};
+  --bg-dark: #{$bg-dark};
+  
+  --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
+  --shadow-xl: #{$shadow-xl};
+}
 
 // Gradients
 $hero-gradient: linear-gradient(45deg, rgba($primary, 0.8) 0%, rgba($primary, 0.4) 100%);
 
-// Shadows
-$card-shadow: 0 20px 40px rgba($primary, 0.1);
-$hover-shadow: 0 30px 60px rgba($primary, 0.15); 
+// Legacy shadows (keeping for backward compatibility)
+$card-shadow: $shadow-md;
+$hover-shadow: $shadow-lg; 

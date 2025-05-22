@@ -25,11 +25,22 @@ html {
 body {
   font-family: $font-secondary;
   @include body-text;
-  color: $text-primary;
-  background-color: $bg-white;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+
+// Container
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+  box-sizing: border-box;
 }
 
 // Typography overrides to ensure proper inheritance
@@ -67,7 +78,7 @@ p {
 
 // Utility classes
 .text-gradient {
-  background: linear-gradient(90deg, $primary 0%, $secondary 100%);
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -92,90 +103,212 @@ p {
   }
 }
 
-// Custom scrollbar
+// Reset styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Scrollbar styling
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: $bg-white;
+  background: var(--bg-light);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $secondary;
+  background: var(--secondary);
   border-radius: 4px;
   
   &:hover {
-    background: $primary;
+    background: var(--primary);
   }
 }
 
 // Buttons
 .btn {
-  padding: 12px 30px;
-  border-radius: 4px;
-  transition: all 0.3s ease;
+  position: relative;
+  padding: 16px 32px;
+  border-radius: 8px;
   font-family: $font-primary;
-  font-weight: $font-weight-medium;
+  font-weight: 600;
   font-size: get-responsive-size('sm');
-  letter-spacing: $letter-spacing-wide;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  z-index: 1;
   
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    z-index: -1;
+  }
+  
+  &:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+  
+  // Primary button style
   &-primary {
-    background-color: $primary;
-    border-color: $primary;
-    color: $text-light;
+    background: linear-gradient(45deg, var(--primary) 0%, rgba(34, 34, 34, 0.9) 100%);
+    border: none;
+    color: var(--text-light);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     
     &:hover {
-      background-color: darken($primary, 10%);
-      border-color: darken($primary, 10%);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transform: translateY(0);
+    }
+  }
+  
+  // Light button style (for dark backgrounds)
+  &-light {
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    color: var(--primary);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    
+    &::before {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    
+    &:hover {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transform: translateY(0);
+    }
+  }
+  
+  // Outline styles
+  &-outline-light {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: var(--text-light);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    
+    &::before {
+      background: rgba(255, 255, 255, 0.15);
+    }
+    
+    &:hover {
+      border-color: var(--text-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
   }
   
   &-outline-primary {
-    border-color: $primary;
-    color: $text-primary;
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    
+    &::before {
+      background: rgba(34, 34, 34, 0.05);
+    }
     
     &:hover {
-      background-color: $primary;
-      color: $text-light;
+      color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     }
   }
-}
 
-// Section headings
-.section-heading {
-  text-align: center;
-  margin-bottom: 3rem;
-  
-  h2 {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 1rem;
+  // Loading state
+  &.is-loading {
+    pointer-events: none;
     
     &::after {
       content: '';
       position: absolute;
-      bottom: -0.5rem;
+      width: 20px;
+      height: 20px;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 3px;
-      background-color: $primary;
+      margin: -10px 0 0 -10px;
+      border: 2px solid transparent;
+      border-top-color: currentColor;
+      border-radius: 50%;
+      animation: button-loading-spinner 0.6s linear infinite;
     }
-  }
-  
-  .lead {
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
   }
 }
 
-// AOS animations override
-[data-aos] {
-  pointer-events: none;
-  &.aos-animate {
-    pointer-events: auto;
+// Button group styles
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  
+  @media (max-width: 575.98px) {
+    flex-direction: column;
+    
+    .btn {
+      width: 100%;
+    }
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+    
+    i {
+      margin-left: 8px;
+      font-size: 1.2em;
+      transition: transform 0.3s ease;
+    }
+    
+    &:hover i {
+      transform: translateX(4px);
+    }
+  }
+}
+
+// Loading spinner animation
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
   }
 }

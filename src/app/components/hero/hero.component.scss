@@ -3,9 +3,12 @@
 .hero {
   position: relative;
   padding-top: 80px; // Account for fixed navbar
-  background-color: $bg-dark;
-  color: $text-light;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
   overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 
   &::before {
     content: '';
@@ -21,6 +24,7 @@
   .container {
     position: relative;
     z-index: 2;
+    width: 100%;
   }
 
   .hero-content {
@@ -32,8 +36,13 @@
     }
 
     .stats {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+
       @media (max-width: 991.98px) {
         justify-content: center;
+        flex-wrap: wrap;
       }
 
       .stat-item {
@@ -43,6 +52,7 @@
           font-weight: 700;
           line-height: 1;
           margin-bottom: 0.5rem;
+          color: var(--text-light);
 
           @media (max-width: 575.98px) {
             font-size: 2rem;
@@ -51,7 +61,9 @@
 
         .stat-label {
           font-size: 0.875rem;
-          color: $text-muted;
+          color: var(--text-muted);
+          text-transform: uppercase;
+          letter-spacing: 1px;
         }
       }
     }
@@ -60,9 +72,12 @@
       font-size: 5rem;
       line-height: 1.1;
       margin-bottom: 1.5rem;
+      color: var(--text-light);
 
       span {
         font-size: 3.5rem;
+        display: block;
+        color: var(--text-muted);
       }
 
       @media (max-width: 991.98px) {
@@ -85,9 +100,14 @@
     .lead {
       font-size: 1.25rem;
       line-height: 1.6;
-      color: $text-muted;
+      color: var(--text-muted);
       max-width: 500px;
-      margin: 0 auto;
+      margin-bottom: 2rem;
+
+      @media (max-width: 991.98px) {
+        margin-left: auto;
+        margin-right: auto;
+      }
 
       @media (max-width: 575.98px) {
         font-size: 1.1rem;
@@ -95,6 +115,9 @@
     }
 
     .cta-buttons {
+      display: flex;
+      gap: 1rem;
+
       @media (max-width: 991.98px) {
         justify-content: center;
       }
@@ -105,6 +128,16 @@
 
         .btn {
           width: 100%;
+        }
+      }
+
+      .btn {
+        padding: 1rem 2rem;
+        font-weight: 600;
+        transition: all $transition-base $ease-out-expo;
+
+        &:hover {
+          transform: translateY(-2px);
         }
       }
     }
@@ -121,22 +154,36 @@
 
     img {
       border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      box-shadow: var(--shadow-lg);
       width: 100%;
       height: auto;
+      transition: transform $transition-base $ease-out-expo;
+
+      @media (hover: hover) {
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
     }
 
     .experience-badge {
       position: absolute;
       bottom: 0;
       right: 0;
-      background: $bg-white;
-      color: $text-primary;
+      background: var(--bg-primary);
+      color: var(--text-primary);
       padding: 1.5rem;
       border-radius: 12px;
       text-align: center;
-      box-shadow: $card-shadow;
+      box-shadow: var(--shadow-lg);
       transform: translateY(50%);
+      transition: all $transition-base $ease-out-expo;
+
+      @media (hover: hover) {
+        &:hover {
+          transform: translateY(50%) scale(1.05);
+        }
+      }
 
       @media (max-width: 991.98px) {
         padding: 1rem;
@@ -156,6 +203,7 @@
         font-weight: 700;
         line-height: 1;
         margin-bottom: 0.5rem;
+        color: var(--primary);
 
         @media (max-width: 991.98px) {
           font-size: 1.5rem;
@@ -165,10 +213,7 @@
       .text {
         font-size: 0.875rem;
         line-height: 1.4;
-
-        @media (max-width: 991.98px) {
-          font-size: 0.75rem;
-        }
+        color: var(--text-secondary);
       }
     }
   }
@@ -180,6 +225,7 @@
     transform: translateX(-50%);
     text-align: center;
     z-index: 2;
+    color: var(--text-light);
     
     @media (max-width: 991.98px) {
       bottom: 1rem;
@@ -193,7 +239,9 @@
       display: block;
       font-size: 0.875rem;
       margin-bottom: 0.5rem;
-      color: $text-muted;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     i {

@@ -1,7 +1,7 @@
 @import '../../../styles/variables';
 
 .skills {
-  background-color: $bg-white;
+  background-color: var(--bg-primary);
 
   h2 {
     position: relative;
@@ -15,7 +15,14 @@
       transform: translateX(-50%);
       width: 60px;
       height: 3px;
-      background-color: $primary;
+      background-color: var(--primary);
+      transition: width $transition-base $ease-out-expo;
+    }
+
+    @media (hover: hover) {
+      &:hover::after {
+        width: 100px;
+      }
     }
 
     @media (max-width: 575.98px) {
@@ -31,19 +38,12 @@
   }
 
   .skill-card {
-    background: $bg-light;
+    background: var(--bg-light);
     padding: 2rem;
     border-radius: 12px;
     height: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    @include hover-lift;
     
-    @media (hover: hover) {
-      &:hover {
-        transform: translateY(-10px);
-        box-shadow: $hover-shadow;
-      }
-    }
-
     @media (max-width: 575.98px) {
       padding: 1.5rem;
       margin: 0 1rem;
@@ -52,12 +52,19 @@
     .skill-icon {
       width: 60px;
       height: 60px;
-      background: $bg-dark;
+      background: var(--bg-dark);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 1.5rem;
+      transition: all $transition-base $ease-bounce;
+      
+      @media (hover: hover) {
+        &:hover {
+          transform: scale(1.2) rotate(10deg);
+        }
+      }
       
       @media (max-width: 575.98px) {
         width: 50px;
@@ -67,7 +74,8 @@
       
       i {
         font-size: 1.75rem;
-        color: $text-light;
+        color: var(--text-light);
+        transition: transform $transition-base $ease-bounce;
 
         @media (max-width: 575.98px) {
           font-size: 1.5rem;
@@ -78,7 +86,14 @@
     h4 {
       font-weight: 600;
       margin-bottom: 1rem;
-      color: $text-primary;
+      color: var(--text-primary);
+      transition: color $transition-base ease;
+
+      @media (hover: hover) {
+        &:hover {
+          color: var(--primary);
+        }
+      }
 
       @media (max-width: 575.98px) {
         font-size: 1.25rem;
@@ -86,8 +101,9 @@
     }
 
     p {
-      color: $text-secondary;
+      color: var(--text-secondary);
       margin-bottom: 1.5rem;
+      transition: color $transition-base ease;
 
       @media (max-width: 575.98px) {
         font-size: 0.9rem;
@@ -104,7 +120,20 @@
         position: relative;
         padding-left: 1.5rem;
         margin-bottom: 0.75rem;
-        color: $text-primary;
+        color: var(--text-primary);
+        transition: all $transition-base ease;
+
+        @media (hover: hover) {
+          &:hover {
+            transform: translateX(5px);
+            color: var(--primary);
+            
+            &::before {
+              transform: translateY(-50%) scale(1.3);
+              background-color: var(--primary);
+            }
+          }
+        }
 
         @media (max-width: 575.98px) {
           font-size: 0.9rem;
@@ -121,7 +150,8 @@
           width: 8px;
           height: 8px;
           border-radius: 50%;
-          background-color: $primary;
+          background-color: var(--primary);
+          transition: all $transition-base $ease-bounce;
 
           @media (max-width: 575.98px) {
             width: 6px;
