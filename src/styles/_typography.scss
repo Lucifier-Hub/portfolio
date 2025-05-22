@@ -1,0 +1,124 @@
+// Font families
+$font-primary: 'Playfair Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', serif;
+$font-secondary: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+
+// Font weights
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Base font size (for Bootstrap compatibility)
+$font-size-base: 1rem;
+$font-size-sm: $font-size-base * 0.875;
+$font-size-lg: $font-size-base * 1.125;
+
+// Heading sizes (for Bootstrap compatibility)
+$h1-font-size: $font-size-base * 2.5;
+$h2-font-size: $font-size-base * 2;
+$h3-font-size: $font-size-base * 1.75;
+$h4-font-size: $font-size-base * 1.5;
+$h5-font-size: $font-size-base * 1.25;
+$h6-font-size: $font-size-base;
+
+// Custom responsive font sizes
+$font-sizes: (
+  'base': (1rem, 1.125rem),
+  'sm': (0.875rem, 0.9375rem),
+  'lg': (1.125rem, 1.25rem),
+  'xl': (1.25rem, 1.5rem),
+  '2xl': (1.5rem, 2rem),
+  '3xl': (2rem, 2.5rem),
+  '4xl': (2.5rem, 3rem),
+  '5xl': (3rem, 3.5rem),
+  '6xl': (3.5rem, 4rem)
+);
+
+// Line heights
+$line-height-tight: 1.1;
+$line-height-snug: 1.2;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.625;
+$line-height-loose: 2;
+
+// Letter spacing
+$letter-spacing-tight: -0.025em;
+$letter-spacing-normal: 0;
+$letter-spacing-wide: 0.025em;
+
+// Function to get responsive font size
+@function get-responsive-size($size) {
+  $sizes: map-get($font-sizes, $size);
+  $min: nth($sizes, 1);
+  $max: nth($sizes, 2);
+  @return clamp($min, calc($min + 2vw), $max);
+}
+
+// Typography mixins
+@mixin heading-1 {
+  font-family: $font-primary;
+  font-size: get-responsive-size('6xl');
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  letter-spacing: $letter-spacing-tight;
+}
+
+@mixin heading-2 {
+  font-family: $font-primary;
+  font-size: get-responsive-size('5xl');
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-snug;
+  letter-spacing: $letter-spacing-tight;
+}
+
+@mixin heading-3 {
+  font-family: $font-primary;
+  font-size: get-responsive-size('4xl');
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-snug;
+}
+
+@mixin body-text {
+  font-family: $font-secondary;
+  font-size: get-responsive-size('base');
+  font-weight: $font-weight-regular;
+  line-height: $line-height-relaxed;
+}
+
+@mixin body-text-lg {
+  font-family: $font-secondary;
+  font-size: get-responsive-size('lg');
+  font-weight: $font-weight-regular;
+  line-height: $line-height-relaxed;
+}
+
+@mixin caption {
+  font-family: $font-secondary;
+  font-size: get-responsive-size('sm');
+  font-weight: $font-weight-medium;
+  line-height: $line-height-normal;
+}
+
+// Additional typography utilities
+@mixin nav-link {
+  font-family: $font-primary;
+  font-size: get-responsive-size('sm');
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-wide;
+  text-transform: uppercase;
+}
+
+@mixin section-title {
+  font-family: $font-primary;
+  font-size: get-responsive-size('3xl');
+  font-weight: $font-weight-bold;
+  line-height: $line-height-snug;
+  letter-spacing: $letter-spacing-tight;
+}
+
+@mixin card-title {
+  font-family: $font-primary;
+  font-size: get-responsive-size('xl');
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-snug;
+} 
