@@ -1,15 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
+// Import styles in correct order
+@import 'styles/variables';
+@import 'styles/typography';
+
 // Custom variables
 $primary-color: #222222;  // From the design example
 $secondary-color: #7B7B7B;
 $tertiary-color: #F8F8F8;
 $white-color: #FFFFFF;
 
-// Font families
-$font-primary: 'Aeonik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+// Bootstrap customization
+$font-family-base: $font-secondary;
+$headings-font-family: $font-primary;
+$btn-font-family: $font-primary;
 
-// Import Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
 // Global styles
@@ -18,40 +23,59 @@ html {
 }
 
 body {
-  font-family: $font-primary;
-  color: $primary-color;
-  background-color: $white-color;
+  font-family: $font-secondary;
+  @include body-text;
+  color: $text-primary;
+  background-color: $bg-white;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-// Typography
+// Typography overrides to ensure proper inheritance
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  font-family: $font-primary !important;
+  letter-spacing: $letter-spacing-tight;
+}
+
 h1, .h1 {
-  font-size: 4.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-  @include media-breakpoint-down(lg) {
-    font-size: 3.5rem;
-  }
+  @include heading-1;
 }
 
 h2, .h2 {
-  font-size: 3rem;
-  font-weight: 600;
-  @include media-breakpoint-down(lg) {
-    font-size: 2.5rem;
-  }
+  @include heading-2;
+  margin-bottom: 1.25rem;
+}
+
+h3, .h3 {
+  @include heading-3;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+.lead {
+  @include body-text-lg;
+  margin-bottom: 1.5rem;
+}
+
+.caption {
+  @include caption;
 }
 
 // Utility classes
 .text-gradient {
-  background: linear-gradient(90deg, $primary-color 0%, $secondary-color 100%);
+  background: linear-gradient(90deg, $primary 0%, $secondary 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .section-padding {
   padding: 100px 0;
-  @include media-breakpoint-down(lg) {
+  @media (max-width: 991.98px) {
     padding: 70px 0;
   }
 }
@@ -74,15 +98,15 @@ h2, .h2 {
 }
 
 ::-webkit-scrollbar-track {
-  background: $white-color;
+  background: $bg-white;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $secondary-color;
+  background: $secondary;
   border-radius: 4px;
   
   &:hover {
-    background: $primary-color;
+    background: $primary;
   }
 }
 
@@ -91,27 +115,60 @@ h2, .h2 {
   padding: 12px 30px;
   border-radius: 4px;
   transition: all 0.3s ease;
-  font-weight: 500;
+  font-family: $font-primary;
+  font-weight: $font-weight-medium;
+  font-size: get-responsive-size('sm');
+  letter-spacing: $letter-spacing-wide;
+  text-transform: uppercase;
   
   &-primary {
-    background-color: $primary-color;
-    border-color: $primary-color;
-    color: $white-color;
+    background-color: $primary;
+    border-color: $primary;
+    color: $text-light;
     
     &:hover {
-      background-color: darken($primary-color, 10%);
-      border-color: darken($primary-color, 10%);
+      background-color: darken($primary, 10%);
+      border-color: darken($primary, 10%);
     }
   }
   
   &-outline-primary {
-    border-color: $primary-color;
-    color: $primary-color;
+    border-color: $primary;
+    color: $text-primary;
     
     &:hover {
-      background-color: $primary-color;
-      color: $white-color;
+      background-color: $primary;
+      color: $text-light;
     }
+  }
+}
+
+// Section headings
+.section-heading {
+  text-align: center;
+  margin-bottom: 3rem;
+  
+  h2 {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1rem;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -0.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: $primary;
+    }
+  }
+  
+  .lead {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 

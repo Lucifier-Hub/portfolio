@@ -1,0 +1,22 @@
+// Colors
+$primary: #222222;    // Dark gray/almost black - for main elements and text
+$secondary: #7B7B7B;  // Medium gray - for secondary text and elements
+$tertiary: #F8F8F8;   // Light gray - for backgrounds and subtle elements
+$white: #FFFFFF;      // Pure white - for backgrounds and text on dark surfaces
+
+// Color usage variables
+$text-primary: $primary;
+$text-secondary: $secondary;
+$text-light: $white;
+$text-muted: rgba($white, 0.8);
+
+$bg-dark: $primary;
+$bg-light: $tertiary;
+$bg-white: $white;
+
+// Gradients
+$hero-gradient: linear-gradient(45deg, rgba($primary, 0.8) 0%, rgba($primary, 0.4) 100%);
+
+// Shadows
+$card-shadow: 0 20px 40px rgba($primary, 0.1);
+$hover-shadow: 0 30px 60px rgba($primary, 0.15); 
