@@ -1,21 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
-// Import styles in correct order
-@import 'styles/variables';
-@import 'styles/typography';
+// Import base styles first
+@use 'styles/variables' as *;
+@use 'styles/typography' as *;
+@use 'bootstrap/scss/bootstrap' with (
+  $font-family-base: $font-secondary,
+  $headings-font-family: $font-primary,
+  $btn-font-family: $font-primary
+);
 
 // Custom variables
 $primary-color: #222222;  // From the design example
 $secondary-color: #7B7B7B;
 $tertiary-color: #F8F8F8;
 $white-color: #FFFFFF;
-
-// Bootstrap customization
-$font-family-base: $font-secondary;
-$headings-font-family: $font-primary;
-$btn-font-family: $font-primary;
-
-@import 'bootstrap/scss/bootstrap';
 
 // Global styles
 html {

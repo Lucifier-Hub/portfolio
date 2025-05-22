@@ -1,3 +1,6 @@
+@use 'sass:map';
+@use 'sass:list';
+
 // Font families
 $font-primary: 'Playfair Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', serif;
 $font-secondary: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
@@ -48,10 +51,11 @@ $letter-spacing-wide: 0.025em;
 
 // Function to get responsive font size
 @function get-responsive-size($size) {
-  $sizes: map-get($font-sizes, $size);
-  $min: nth($sizes, 1);
-  $max: nth($sizes, 2);
-  @return clamp($min, calc($min + 2vw), $max);
+  $sizes: map.get($font-sizes, $size);
+  $min: list.nth($sizes, 1);
+  $max: list.nth($sizes, 2);
+  
+  @return clamp(#{$min}, #{$min} + 2vw, #{$max});
 }
 
 // Typography mixins
