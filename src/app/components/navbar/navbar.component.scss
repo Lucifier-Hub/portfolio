@@ -15,6 +15,16 @@
         color: #7B7B7B;
       }
     }
+
+    .btn-primary {
+      background: linear-gradient(45deg, var(--primary), #404040);
+      color: #FFFFFF;
+      
+      &:hover {
+        background: linear-gradient(45deg, #404040, var(--primary));
+        transform: translateY(-2px);
+      }
+    }
   }
 
   .navbar-brand {
@@ -94,6 +104,32 @@
 
   .btn-primary {
     margin-left: 16px;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+
+    i {
+      font-size: 1.1em;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+      i {
+        transform: translateY(2px);
+      }
+    }
   }
 }
 
@@ -121,7 +157,15 @@
 
     .btn-primary {
       margin: 16px;
-      display: inline-block;
+      display: inline-flex;
+      width: calc(100% - 32px);
+      justify-content: center;
+      background: linear-gradient(45deg, var(--primary), #404040);
+      color: #FFFFFF;
+      
+      &:hover {
+        background: linear-gradient(45deg, #404040, var(--primary));
+      }
     }
   }
 }
