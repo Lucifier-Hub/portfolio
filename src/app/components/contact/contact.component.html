@@ -3,7 +3,10 @@
     <div class="row mb-5">
       <div class="col-lg-6 mx-auto text-center">
         <h2 class="mb-4">Get In Touch</h2>
-        <p class="lead">Let's discuss your project and see how I can help bring your ideas to life.</p>
+        <p class="lead">
+          Let's discuss your project and see how I can help bring your ideas to
+          life.
+        </p>
       </div>
     </div>
     <div class="row g-4">
@@ -33,63 +36,79 @@
         </div>
       </div>
       <div class="col-lg-7" data-aos="fade-left">
-        <form class="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
+        <form
+          class="contact-form"
+          (ngSubmit)="onSubmit()"
+          #contactForm="ngForm"
+        >
           <div class="mb-3">
-            <input 
-              type="text" 
-              class="form-control" 
-              placeholder="Your Name" 
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Your Name"
               [(ngModel)]="formData.name"
               name="name"
               required
-              #name="ngModel">
+              #name="ngModel"
+            />
           </div>
           <div class="mb-3">
-            <input 
-              type="email" 
-              class="form-control" 
-              placeholder="Your Email" 
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Your Email"
               [(ngModel)]="formData.email"
               name="email"
               required
               email
-              #email="ngModel">
+              #email="ngModel"
+            />
           </div>
           <div class="mb-3">
-            <input 
-              type="text" 
-              class="form-control" 
-              placeholder="Subject" 
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Subject"
               [(ngModel)]="formData.subject"
               name="subject"
               required
-              #subject="ngModel">
+              #subject="ngModel"
+            />
           </div>
           <div class="mb-4">
-            <textarea 
-              class="form-control" 
-              placeholder="Your Message" 
+            <textarea
+              class="form-control"
+              placeholder="Your Message"
               [(ngModel)]="formData.message"
               name="message"
               required
               rows="5"
-              #message="ngModel"></textarea>
+              #message="ngModel"
+            ></textarea>
           </div>
-          
+          <div class="mb-3">
+            <div
+              class="g-recaptcha"
+              data-sitekey="6LdyQ0YrAAAAAENRe0vmgQHNga2f54K5MWQJpky1"
+              data-callback="onRecaptchaSuccess"
+            ></div>
+          </div>
+
           <!-- Success Message -->
           <div class="alert alert-success mb-3" *ngIf="isSuccess">
             Message sent successfully! I'll get back to you soon.
           </div>
-          
+
           <!-- Error Message -->
           <div class="alert alert-danger mb-3" *ngIf="isError">
             {{ errorMessage }}
           </div>
-          
-          <button 
-            type="submit" 
+
+          <button
+            type="submit"
             class="btn btn-primary"
-            [disabled]="!contactForm.form.valid || isLoading">
+            [disabled]="!contactForm.form.valid || isLoading || !recaptchaToken"
+          >
             <span *ngIf="!isLoading">Send Message</span>
             <span *ngIf="isLoading">Sending...</span>
           </button>
